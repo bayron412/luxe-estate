@@ -2,14 +2,14 @@ import React from 'react';
 
 export default function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-nordic-dark/10 dark:border-white/5">
+    <nav className="sticky top-0 z-50 bg-[#EEF6F6]/95 backdrop-blur-md border-b border-nordic-dark/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
             <div className="w-8 h-8 rounded-lg bg-nordic-dark flex items-center justify-center">
               <span className="material-icons text-white text-lg">apartment</span>
             </div>
-            <span className="text-xl font-semibold tracking-tight text-nordic-dark dark:text-white">LuxeEstate</span>
+            <span className="text-xl font-semibold tracking-tight text-nordic-dark">LuxeEstate</span>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -20,15 +20,15 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center space-x-6">
-            <button className="text-nordic-dark hover:text-mosque dark:text-gray-400 dark:hover:text-white transition-colors">
+            <button className="text-nordic-dark hover:text-mosque transition-colors">
               <span className="material-icons">search</span>
             </button>
-            <button className="text-nordic-dark hover:text-mosque dark:text-gray-400 dark:hover:text-white transition-colors relative">
+            <button className="text-nordic-dark hover:text-mosque transition-colors relative">
               <span className="material-icons">notifications_none</span>
-              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-background-light dark:border-background-dark"></span>
+              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-[#EEF6F6]"></span>
             </button>
             
-            <button className="flex items-center gap-2 pl-2 border-l border-nordic-dark/10 dark:border-white/10 ml-2">
+            <button className="flex items-center gap-2 pl-2 border-l border-nordic-dark/10 ml-2">
               <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent hover:ring-mosque transition-all">
                 <img
                   alt="Profile"
@@ -41,7 +41,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="md:hidden border-t border-nordic-dark/5 bg-background-light dark:bg-background-dark overflow-hidden h-0 transition-all duration-300">
+      <div className="md:hidden border-t border-nordic-dark/5 bg-[#EEF6F6] overflow-hidden h-0 transition-all duration-300">
         <div className="px-4 py-2 space-y-1">
           <a className="block px-3 py-2 rounded-md text-base font-medium text-mosque bg-mosque/10" href="#">Buy</a>
           <a className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5" href="#">Rent</a>

@@ -7,11 +7,9 @@
 
 @theme inline {
   --color-primary: #06f9d0;
-  --color-background-light: #EEF6F6;
-  --color-background-dark: #0f231f;
+  --color-mosque: #006655;
   --color-nordic-dark: #19322F;
   --color-nordic-muted: #5C706D;
-  --color-mosque: #006655;
   
   --font-display: var(--font-inter);
   --font-sans: var(--font-inter);
@@ -20,17 +18,11 @@
   --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f231f;
-    --foreground: #ffffff;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
+  color-scheme: light;
 }
 
 @layer utilities {

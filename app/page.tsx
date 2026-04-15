@@ -6,13 +6,13 @@ import { mockFeaturedProperties, mockProperties } from "../data/mockProperties";
 
 export default function Home() {
   return (
-    <div className="bg-background-light dark:bg-background-dark text-nordic-dark dark:text-white font-display antialiased selection:bg-mosque selection:text-white">
+    <div className="bg-[#EEF6F6] text-nordic-dark font-display antialiased selection:bg-mosque selection:text-white">
       <Navbar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <section className="py-12 md:py-16">
           <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-nordic-dark dark:text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-nordic-dark leading-tight">
               Find your <span className="relative inline-block">
                 <span className="relative z-10 font-medium">sanctuary</span>
                 <span className="absolute bottom-2 left-0 w-full h-3 bg-mosque/20 -rotate-1 z-0"></span>
@@ -24,7 +24,7 @@ export default function Home() {
                 <span className="material-icons text-nordic-muted text-2xl group-focus-within:text-mosque transition-colors">search</span>
               </div>
               <input
-                className="block w-full pl-12 pr-4 py-4 rounded-xl border-none bg-white dark:bg-white/5 text-nordic-dark dark:text-white shadow-soft placeholder-[rgba(92,112,109,0.6)] focus:ring-2 focus:ring-mosque focus:bg-white dark:focus:bg-white/10 transition-all text-lg"
+                className="block w-full pl-12 pr-4 py-4 rounded-xl border-none bg-white text-nordic-dark shadow-soft placeholder-[rgba(92,112,109,0.6)] focus:ring-2 focus:ring-mosque focus:bg-white transition-all text-lg"
                 placeholder="Search by city, neighborhood, or address..."
                 type="text"
               />
@@ -37,22 +37,22 @@ export default function Home() {
               <button className="whitespace-nowrap px-5 py-2 rounded-full bg-nordic-dark text-white text-sm font-medium shadow-lg shadow-nordic-dark/10 transition-transform hover:-translate-y-0.5">
                 All
               </button>
-              <button className="whitespace-nowrap px-5 py-2 rounded-full bg-white dark:bg-white/5 border border-nordic-dark/5 text-nordic-muted hover:text-nordic-dark hover:border-mosque/50 text-sm font-medium transition-all hover:bg-mosque/5">
+              <button className="whitespace-nowrap px-5 py-2 rounded-full bg-white border border-nordic-dark/5 text-nordic-muted hover:text-nordic-dark hover:border-mosque/50 text-sm font-medium transition-all hover:bg-mosque/5">
                 House
               </button>
-              <button className="whitespace-nowrap px-5 py-2 rounded-full bg-white dark:bg-white/5 border border-nordic-dark/5 text-nordic-muted hover:text-nordic-dark hover:border-mosque/50 text-sm font-medium transition-all hover:bg-mosque/5">
+              <button className="whitespace-nowrap px-5 py-2 rounded-full bg-white border border-nordic-dark/5 text-nordic-muted hover:text-nordic-dark hover:border-mosque/50 text-sm font-medium transition-all hover:bg-mosque/5">
                 Apartment
               </button>
-              <button className="whitespace-nowrap px-5 py-2 rounded-full bg-white dark:bg-white/5 border border-nordic-dark/5 text-nordic-muted hover:text-nordic-dark hover:border-mosque/50 text-sm font-medium transition-all hover:bg-mosque/5">
+              <button className="whitespace-nowrap px-5 py-2 rounded-full bg-white border border-nordic-dark/5 text-nordic-muted hover:text-nordic-dark hover:border-mosque/50 text-sm font-medium transition-all hover:bg-mosque/5">
                 Villa
               </button>
-              <button className="whitespace-nowrap px-5 py-2 rounded-full bg-white dark:bg-white/5 border border-nordic-dark/5 text-nordic-muted hover:text-nordic-dark hover:border-mosque/50 text-sm font-medium transition-all hover:bg-mosque/5">
+              <button className="whitespace-nowrap px-5 py-2 rounded-full bg-white border border-nordic-dark/5 text-nordic-muted hover:text-nordic-dark hover:border-mosque/50 text-sm font-medium transition-all hover:bg-mosque/5">
                 Penthouse
               </button>
 
               <div className="w-px h-6 bg-nordic-dark/10 mx-2"></div>
 
-              <button className="whitespace-nowrap flex items-center gap-1 px-4 py-2 rounded-full text-nordic-dark font-medium text-sm hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+              <button className="whitespace-nowrap flex items-center gap-1 px-4 py-2 rounded-full text-nordic-dark font-medium text-sm hover:bg-black/5 transition-colors">
                 <span className="material-icons text-base">tune</span> Filters
               </button>
             </div>
@@ -62,7 +62,7 @@ export default function Home() {
         <section className="mb-16">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-light text-nordic-dark dark:text-white">Featured Collections</h2>
+              <h2 className="text-2xl font-light text-nordic-dark">Featured Collections</h2>
               <p className="text-nordic-muted mt-1 text-sm">Curated properties for the discerning eye.</p>
             </div>
             <a className="hidden sm:flex items-center gap-1 text-sm font-medium text-mosque hover:opacity-70 transition-opacity" href="#">
@@ -80,20 +80,19 @@ export default function Home() {
         <section>
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-light text-nordic-dark dark:text-white">New in Market</h2>
+              <h2 className="text-2xl font-light text-nordic-dark">New in Market</h2>
               <p className="text-nordic-muted mt-1 text-sm">Fresh opportunities added this week.</p>
             </div>
-            <div className="hidden md:flex bg-white dark:bg-white/5 p-1 rounded-lg">
+            <div className="hidden md:flex bg-white p-1 rounded-lg">
               <button className="px-4 py-1.5 rounded-md text-sm font-medium bg-nordic-dark text-white shadow-sm">All</button>
-              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark dark:hover:text-white">Buy</button>
-              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark dark:hover:text-white">Rent</button>
+              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark">Buy</button>
+              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark">Rent</button>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
              {mockProperties.map((property, index) => {
                // The original HTML had 6 elements. Some were hidden based on screen dimension to match the display count
-               // Let's implement the hidden logic manually or keep it simple.
                let hideClass = '';
                if (index === 4) hideClass = 'hidden xl:flex';
                if (index === 5) hideClass = 'hidden lg:flex';
@@ -107,7 +106,7 @@ export default function Home() {
           </div>
 
           <div className="mt-12 text-center">
-            <button className="px-8 py-3 bg-white dark:bg-white/5 border border-nordic-dark/10 dark:border-white/10 hover:border-mosque hover:text-mosque text-nordic-dark dark:text-white font-medium rounded-lg transition-all hover:shadow-md">
+            <button className="px-8 py-3 bg-white border border-nordic-dark/10 hover:border-mosque hover:text-mosque text-nordic-dark font-medium rounded-lg transition-all hover:shadow-md">
               Load more properties
             </button>
           </div>
