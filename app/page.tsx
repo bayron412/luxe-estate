@@ -2,9 +2,73 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import FeaturedPropertyCard from "../components/FeaturedPropertyCard";
 import PropertyCard from "../components/PropertyCard";
-import { mockFeaturedProperties, mockProperties } from "../data/mockProperties";
+import Pagination from "../components/Pagination/Pagination";
+import { supabase } from "../lib/supabase";
+import { Property, FeaturedProperty } from "../types/property";
 
-export default function Home() {
+const PAGE_SIZE = 8;
+
+/** Maps a Supabase row to the Property interface */
+function toProperty(row: Record<string, unknown>): Property {
+  return {
+    id: row.id as string,
+    title: row.title as string,
+    price: row.price as string,
+    location: row.location as string,
+    beds: Number(row.beds),
+    baths: Number(row.baths),
+    area: row.area as string,
+    imageUrl: row.image_url as string,
+    isRental: row.is_rental as boolean,
+    statusTag: row.status_tag as string,
+  };
+}
+
+function toFeaturedProperty(row: Record<string, unknown>): FeaturedProperty {
+  return {
+    ...toProperty(row),
+    isFeatured: row.is_featured as boolean,
+  };
+}
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  // In Next.js 16, searchParams is a Promise — must await
+  const resolvedParams = await searchParams;
+  const pageParam = resolvedParams.page;
+  const currentPage = Math.max(1, Number(Array.isArray(pageParam) ? pageParam[0] : (pageParam ?? "1")));
+
+  const from = (currentPage - 1) * PAGE_SIZE;
+  const to = from + PAGE_SIZE - 1;
+
+  // Fetch featured properties and paginated regular properties in parallel
+  const [featuredResult, propertiesResult] = await Promise.all([
+    supabase
+      .from("properties")
+      .select("*")
+      .eq("is_featured", true)
+      .order("created_at", { ascending: true }),
+
+    supabase
+      .from("properties")
+      .select("*", { count: "exact" })
+      .eq("is_featured", false)
+      .order("created_at", { ascending: true })
+      .range(from, to),
+  ]);
+
+  const featuredProperties: FeaturedProperty[] =
+    (featuredResult.data ?? []).map(toFeaturedProperty);
+
+  const properties: Property[] =
+    (propertiesResult.data ?? []).map(toProperty);
+
+  const totalCount = propertiesResult.count ?? 0;
+  const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+
   return (
     <div className="bg-[#EEF6F6] text-nordic-dark font-display antialiased selection:bg-mosque selection:text-white">
       <Navbar />
@@ -59,6 +123,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Featured Collections */}
         <section className="mb-16">
           <div className="flex items-end justify-between mb-8">
             <div>
@@ -71,17 +136,23 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {mockFeaturedProperties.map((property) => (
+            {featuredProperties.map((property) => (
               <FeaturedPropertyCard key={property.id} property={property} />
             ))}
           </div>
         </section>
 
+        {/* New in Market — paginated */}
         <section>
           <div className="flex items-end justify-between mb-8">
             <div>
               <h2 className="text-2xl font-light text-nordic-dark">New in Market</h2>
-              <p className="text-nordic-muted mt-1 text-sm">Fresh opportunities added this week.</p>
+              <p className="text-nordic-muted mt-1 text-sm">
+                Fresh opportunities added this week.{" "}
+                <span className="text-nordic-dark/40 text-xs">
+                  ({totalCount} properties)
+                </span>
+              </p>
             </div>
             <div className="hidden md:flex bg-white p-1 rounded-lg">
               <button className="px-4 py-1.5 rounded-md text-sm font-medium bg-nordic-dark text-white shadow-sm">All</button>
@@ -91,25 +162,15 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-             {mockProperties.map((property, index) => {
-               // The original HTML had 6 elements. Some were hidden based on screen dimension to match the display count
-               let hideClass = '';
-               if (index === 4) hideClass = 'hidden xl:flex';
-               if (index === 5) hideClass = 'hidden lg:flex';
-               
-               return (
-                 <div key={property.id} className={`${hideClass} h-full`}>
-                   <PropertyCard property={property} />
-                 </div>
-               );
-             })}
+            {properties.map((property) => (
+              <div key={property.id} className="h-full">
+                <PropertyCard property={property} />
+              </div>
+            ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <button className="px-8 py-3 bg-white border border-nordic-dark/10 hover:border-mosque hover:text-mosque text-nordic-dark font-medium rounded-lg transition-all hover:shadow-md">
-              Load more properties
-            </button>
-          </div>
+          {/* Server-side pagination */}
+          <Pagination currentPage={currentPage} totalPages={totalPages} />
         </section>
       </main>
     </div>
