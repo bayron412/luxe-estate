@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const { data } = await supabase
     .from("properties")
-    .select("title, description, image_url")
+    .select("title, description, images")
     .eq("slug", slug)
     .single();
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${data.title} | LuxeEstate`,
     description: data.description,
     openGraph: {
-      images: [data.image_url],
+      images: data.images ? data.images : [],
     },
   };
 }
@@ -57,7 +57,8 @@ export default async function PropertyPage({
     beds: Number(row.beds),
     baths: Number(row.baths),
     area: row.area,
-    imageUrl: row.image_url,
+    lat: Number(row.lat),
+    lng: Number(row.lng),
     images: row.images || [],
     description: row.description || "No description available.",
     amenities: row.amenities || [],
@@ -66,7 +67,7 @@ export default async function PropertyPage({
     statusTag: row.status_tag,
   };
 
-  const images = property.images && property.images.length > 0 ? property.images : [property.imageUrl];
+  const images = property.images && property.images.length > 0 ? property.images : [''];
   const mainImage = images[0];
   const galleryImages = images.slice(1);
 
@@ -170,7 +171,7 @@ export default async function PropertyPage({
               </div>
               
               <div className="bg-white p-2 rounded-xl shadow-sm border border-mosque/5">
-                <PropertyMapWrapper location={property.location} />
+                <PropertyMapWrapper location={property.location} lat={property.lat} lng={property.lng} />
               </div>
             </div>
           </div>

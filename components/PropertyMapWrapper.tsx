@@ -12,6 +12,6 @@ const PropertyMap = dynamic(() => import("./PropertyMap"), {
   ),
 });
 
-export default function PropertyMapWrapper(props: { location: string }) {
+export default function PropertyMapWrapper(props: { location: string, lat: number, lng: number }) {
   return <PropertyMap {...props} />;
 }

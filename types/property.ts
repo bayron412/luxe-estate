@@ -6,7 +6,8 @@ export interface Property {
   beds: number;
   baths: number;
   area: string; // e.g. "4,200 m²"
-  imageUrl: string;
+  lat: number;
+  lng: number;
   images: string[];
   description: string;
   amenities: string[];
