@@ -7,6 +7,10 @@ export interface Property {
   baths: number;
   area: string; // e.g. "4,200 m²"
   imageUrl: string;
+  images: string[];
+  description: string;
+  amenities: string[];
+  slug: string;
   isRental: boolean;
   statusTag: string; // e.g. "Exclusive", "FOR SALE", "FOR RENT"
 }

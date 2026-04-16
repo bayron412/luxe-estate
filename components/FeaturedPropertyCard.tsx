@@ -1,9 +1,11 @@
 import React from 'react';
+import Link from 'next/link';
 import { FeaturedProperty } from '../types/property';
 
 export default function FeaturedPropertyCard({ property }: { property: FeaturedProperty }) {
   return (
-    <div className="group relative rounded-xl overflow-hidden shadow-soft bg-white cursor-pointer">
+    <Link href={`/propiedades/${property.slug}`} className="block">
+      <div className="group relative rounded-xl overflow-hidden shadow-soft bg-white cursor-pointer h-full">
       <div className="aspect-[4/3] w-full overflow-hidden relative">
         <img
           alt={property.title}
@@ -44,5 +46,6 @@ export default function FeaturedPropertyCard({ property }: { property: FeaturedP
         </div>
       </div>
     </div>
+    </Link>
   );
 }

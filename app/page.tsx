@@ -19,6 +19,10 @@ function toProperty(row: Record<string, unknown>): Property {
     baths: Number(row.baths),
     area: row.area as string,
     imageUrl: row.image_url as string,
+    images: row.images as string[] ?? [],
+    description: row.description as string ?? "",
+    amenities: row.amenities as string[] ?? [],
+    slug: row.slug as string,
     isRental: row.is_rental as boolean,
     statusTag: row.status_tag as string,
   };

@@ -1,9 +1,11 @@
 import React from 'react';
+import Link from 'next/link';
 import { Property } from '../types/property';
 
 export default function PropertyCard({ property }: { property: Property }) {
   return (
-    <article className="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-soft transition-all duration-300 group cursor-pointer h-full flex flex-col">
+    <Link href={`/propiedades/${property.slug}`} className="block h-full">
+      <article className="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-soft transition-all duration-300 group cursor-pointer h-full flex flex-col">
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           alt={property.title}
@@ -40,5 +42,6 @@ export default function PropertyCard({ property }: { property: Property }) {
         </div>
       </div>
     </article>
+    </Link>
   );
 }
