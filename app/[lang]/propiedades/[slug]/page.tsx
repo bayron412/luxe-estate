@@ -98,13 +98,13 @@ export default async function PropertyPage({
                 </span>
                 {property.isRental && (
                   <span className="bg-white/90 backdrop-blur text-nordic text-xs font-medium px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
-                    Rental
+                    {dict.property.rental}
                   </span>
                 )}
               </div>
               <button className="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-nordic px-4 py-2 rounded-lg text-sm font-medium shadow-lg backdrop-blur transition-all flex items-center gap-2">
                 <span className="material-icons text-sm">grid_view</span>
-                View All Photos
+                {dict.property.viewAllPhotos}
               </button>
             </div>
 
@@ -150,7 +150,7 @@ export default async function PropertyPage({
                     <h3 className="font-semibold text-nordic">Sarah Jenkins</h3>
                     <div className="flex items-center gap-1 text-xs text-mosque font-medium">
                       <span className="material-icons text-[14px]">star</span>
-                      <span>Top Rated Agent</span>
+                      <span>{dict.property.topRatedAgent}</span>
                     </div>
                   </div>
                   <div className="ml-auto flex gap-2">
@@ -165,11 +165,11 @@ export default async function PropertyPage({
                 <div className="space-y-3">
                   <button className="w-full bg-mosque hover:bg-[#005544] text-white py-4 px-6 rounded-lg font-medium transition-all shadow-lg shadow-mosque/20 flex items-center justify-center gap-2 group">
                     <span className="material-icons text-xl group-hover:scale-110 transition-transform">calendar_today</span>
-                    Schedule Visit
+                    {dict.property.scheduleVisit}
                   </button>
                   <button className="w-full bg-transparent border border-nordic/10 hover:border-mosque text-nordic/80 hover:text-mosque py-4 px-6 rounded-lg font-medium transition-all flex items-center justify-center gap-2">
                     <span className="material-icons text-xl">mail_outline</span>
-                    Contact Agent
+                    {dict.property.contactAgent}
                   </button>
                 </div>
               </div>
@@ -183,33 +183,33 @@ export default async function PropertyPage({
           {/* Scrollable details under images */}
           <div className="lg:col-span-8 lg:row-start-2 -mt-4 lg:-mt-8 space-y-8 pb-10">
             <div className="bg-white p-8 rounded-xl shadow-sm border border-mosque/5">
-              <h2 className="text-lg font-semibold mb-6 text-nordic">Property Features</h2>
+              <h2 className="text-lg font-semibold mb-6 text-nordic">{dict.property.propertyFeatures}</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div className="flex flex-col items-center justify-center p-4 bg-mosque/5 rounded-lg border border-mosque/10">
                   <span className="material-icons text-mosque text-2xl mb-2">square_foot</span>
                   <span className="text-xl font-bold text-nordic">{property.area}</span>
-                  <span className="text-xs uppercase tracking-wider text-nordic/50">Space</span>
+                  <span className="text-xs uppercase tracking-wider text-nordic/50">{dict.property.space}</span>
                 </div>
                 <div className="flex flex-col items-center justify-center p-4 bg-mosque/5 rounded-lg border border-mosque/10">
                   <span className="material-icons text-mosque text-2xl mb-2">bed</span>
                   <span className="text-xl font-bold text-nordic">{property.beds}</span>
-                  <span className="text-xs uppercase tracking-wider text-nordic/50">Bedrooms</span>
+                  <span className="text-xs uppercase tracking-wider text-nordic/50">{dict.property.bedrooms}</span>
                 </div>
                 <div className="flex flex-col items-center justify-center p-4 bg-mosque/5 rounded-lg border border-mosque/10">
                   <span className="material-icons text-mosque text-2xl mb-2">shower</span>
                   <span className="text-xl font-bold text-nordic">{property.baths}</span>
-                  <span className="text-xs uppercase tracking-wider text-nordic/50">Bathrooms</span>
+                  <span className="text-xs uppercase tracking-wider text-nordic/50">{dict.property.bathrooms}</span>
                 </div>
                 <div className="flex flex-col items-center justify-center p-4 bg-mosque/5 rounded-lg border border-mosque/10">
                   <span className="material-icons text-mosque text-2xl mb-2">directions_car</span>
                   <span className="text-xl font-bold text-nordic">2</span>
-                  <span className="text-xs uppercase tracking-wider text-nordic/50">Garage</span>
+                  <span className="text-xs uppercase tracking-wider text-nordic/50">{dict.property.garage}</span>
                 </div>
               </div>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-sm border border-mosque/5">
-              <h2 className="text-lg font-semibold mb-4 text-nordic">About this home</h2>
+              <h2 className="text-lg font-semibold mb-4 text-nordic">{dict.property.aboutHome}</h2>
               <div className="prose prose-slate max-w-none text-nordic/70 leading-relaxed whitespace-pre-line">
                 {property.description}
               </div>
@@ -217,12 +217,14 @@ export default async function PropertyPage({
 
             {property.amenities && property.amenities.length > 0 && (
               <div className="bg-white p-8 rounded-xl shadow-sm border border-mosque/5">
-                <h2 className="text-lg font-semibold mb-6 text-nordic">Amenities</h2>
+                <h2 className="text-lg font-semibold mb-6 text-nordic">{dict.property.amenities}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                   {property.amenities.map((amenity, idx) => (
                     <div key={idx} className="flex items-center gap-3 text-nordic/70">
                       <span className="material-icons text-mosque/60 text-sm">check_circle</span>
-                      <span>{amenity}</span>
+                      <span>
+                        {(dict.property.amenitiesMap as Record<string, string>)?.[amenity] || amenity}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -237,7 +239,7 @@ export default async function PropertyPage({
       <footer className="bg-white border-t border-slate-200 mt-12 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-sm text-nordic/50">
-            © 2026 LuxeEstate Inc. All rights reserved.
+            © 2026 LuxeEstate Inc. {dict.property.allRightsReserved}
           </div>
         </div>
       </footer>

@@ -127,10 +127,15 @@ export default async function Home({
         <section className="py-12 md:py-16">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-nordic-dark leading-tight">
-              {dict.home.title}
+              {dict.home.titleStart}
+              <span className="relative inline-block">
+                <span className="relative z-10 font-medium">{dict.home.titleHighlight}</span>
+                <span className="absolute bottom-2 left-0 w-full h-3 bg-mosque/20 -rotate-1 z-0"></span>
+              </span>
+              {dict.home.titleEnd}
             </h1>
 
-            <SearchFilters />
+            <SearchFilters dict={dict.search} />
           </div>
         </section>
 
@@ -139,11 +144,11 @@ export default async function Home({
           <section className="mb-16">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <h2 className="text-2xl font-light text-nordic-dark">Featured Collections</h2>
-                <p className="text-nordic-muted mt-1 text-sm">Curated properties for the discerning eye.</p>
+                <h2 className="text-2xl font-light text-nordic-dark">{dict.home.featuredCollections}</h2>
+                <p className="text-nordic-muted mt-1 text-sm">{dict.home.featuredDesc}</p>
               </div>
               <a className="hidden sm:flex items-center gap-1 text-sm font-medium text-mosque hover:opacity-70 transition-opacity" href="#">
-                View all <span className="material-icons text-sm">arrow_forward</span>
+                {dict.home.viewAll} <span className="material-icons text-sm">arrow_forward</span>
               </a>
             </div>
 
@@ -159,18 +164,18 @@ export default async function Home({
         <section>
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-light text-nordic-dark">New in Market</h2>
+              <h2 className="text-2xl font-light text-nordic-dark">{dict.home.newInMarket}</h2>
               <p className="text-nordic-muted mt-1 text-sm">
-                Fresh opportunities added this week.{" "}
+                {dict.home.newDesc}{" "}
                 <span className="text-nordic-dark/40 text-xs">
-                  ({totalCount} properties)
+                  ({totalCount} {dict.home.propertiesCount})
                 </span>
               </p>
             </div>
             <div className="hidden md:flex bg-white p-1 rounded-lg">
-              <button className="px-4 py-1.5 rounded-md text-sm font-medium bg-nordic-dark text-white shadow-sm">All</button>
-              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark">Buy</button>
-              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark">Rent</button>
+              <button className="px-4 py-1.5 rounded-md text-sm font-medium bg-nordic-dark text-white shadow-sm">{dict.filters.all}</button>
+              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark">{dict.filters.buy}</button>
+              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark">{dict.filters.rent}</button>
             </div>
           </div>
 

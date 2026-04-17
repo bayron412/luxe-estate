@@ -6,7 +6,82 @@
     "savedHomes": "Sauvegardés"
   },
   "home": {
-    "title": "Trouvez votre sanctuaire.",
-    "subtitle": "Explorez les meilleures propriétés de luxe."
+    "titleStart": "Trouvez votre ",
+    "titleHighlight": "sanctuaire",
+    "titleEnd": ".",
+    "featuredCollections": "Collections en vedette",
+    "featuredDesc": "Propriétés sélectionnées pour les plus exigeants.",
+    "viewAll": "Voir tout",
+    "newInMarket": "Nouveautés sur le marché",
+    "newDesc": "De nouvelles opportunités ajoutées cette semaine.",
+    "propertiesCount": "propriétés"
+  },
+  "filters": {
+    "all": "Tous",
+    "buy": "Acheter",
+    "rent": "Louer"
+  },
+  "search": {
+    "placeholder": "Rechercher par ville, quartier ou adresse...",
+    "button": "Rechercher",
+    "filters": "Filtres",
+    "categories": {
+      "All": "Tous",
+      "House": "Maison",
+      "Apartment": "Appartement",
+      "Villa": "Villa",
+      "Penthouse": "Penthouse"
+    },
+    "modal": {
+      "title": "Filtres",
+      "location": "Emplacement",
+      "locPlaceholder": "Ville, quartier ou adresse",
+      "priceRange": "Gamme de prix",
+      "minPrice": "Prix Min",
+      "maxPrice": "Prix Max",
+      "any": "Tous",
+      "propertyType": "Type de propriété",
+      "anyType": "Tous les types",
+      "bedrooms": "Chambres",
+      "bathrooms": "Salles de bain",
+      "amenities": "Équipements et Caractéristiques",
+      "clearAll": "Effacer tous les filtres",
+      "showResults": "Afficher les résultats"
+    },
+    "amenitiesList": {
+      "Swimming Pool": "Piscine",
+      "Gym": "Salle de sport",
+      "Parking": "Stationnement",
+      "Air Conditioning": "Climatisation",
+      "High-speed Wifi": "Wifi Haut Débit",
+      "Patio / Terrace": "Terrasse"
+    }
+  },
+  "property": {
+    "rental": "Location",
+    "viewAllPhotos": "Voir toutes les photos",
+    "topRatedAgent": "Agent le mieux noté",
+    "scheduleVisit": "Planifier une visite",
+    "contactAgent": "Contacter l'agent",
+    "propertyFeatures": "Caractéristiques du bien",
+    "space": "Surface",
+    "bedrooms": "Chambres",
+    "bathrooms": "Salles de bain",
+    "garage": "Garage",
+    "aboutHome": "À propos de ce bien",
+    "amenities": "Équipements",
+    "allRightsReserved": "Tous droits réservés.",
+    "amenitiesMap": {
+      "Air Conditioning": "Climatisation",
+      "Central Heating & Cooling": "Chauffage et Climatisation Centralisés",
+      "Electric Vehicle Charging": "Borne de Recharge Véhicule Électrique",
+      "Gym": "Salle de sport",
+      "High-speed Wifi": "Wifi Haut Débit",
+      "Parking": "Stationnement",
+      "Patio / Terrace": "Terrasse",
+      "Private Gym": "Salle de sport privée",
+      "Smart Home System": "Système Domotique",
+      "Swimming Pool": "Piscine"
+    }
   }
 }

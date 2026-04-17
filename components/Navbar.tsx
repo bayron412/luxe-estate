@@ -25,7 +25,6 @@ export default function Navbar({ dict, lang = 'es' }: { dict?: any, lang?: strin
           </div>
 
           <div className="flex items-center space-x-6">
-            <LanguageSwitcher currentLang={lang} />
             <button className="text-nordic-dark hover:text-mosque transition-colors">
               <span className="material-icons">search</span>
             </button>
@@ -34,7 +33,7 @@ export default function Navbar({ dict, lang = 'es' }: { dict?: any, lang?: strin
               <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-[#EEF6F6]"></span>
             </button>
             
-            <button className="flex items-center gap-2 pl-2 border-l border-nordic-dark/10 ml-2">
+            <button className="flex items-center gap-2">
               <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent hover:ring-mosque transition-all">
                 <img
                   alt="Profile"
@@ -43,6 +42,10 @@ export default function Navbar({ dict, lang = 'es' }: { dict?: any, lang?: strin
                 />
               </div>
             </button>
+
+            <div className="pl-2 border-l border-nordic-dark/10 h-8 flex items-center">
+              <LanguageSwitcher currentLang={lang} />
+            </div>
           </div>
         </div>
       </div>

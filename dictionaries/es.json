@@ -6,7 +6,82 @@
     "savedHomes": "Guardados"
   },
   "home": {
-    "title": "Encuentra tu santuario.",
-    "subtitle": "Explora las mejores propiedades de lujo."
+    "titleStart": "Encuentra tu ",
+    "titleHighlight": "santuario",
+    "titleEnd": ".",
+    "featuredCollections": "Colecciones Destacadas",
+    "featuredDesc": "Propiedades seleccionadas para el ojo exigente.",
+    "viewAll": "Ver todas",
+    "newInMarket": "Nuevas en el Mercado",
+    "newDesc": "Oportunidades frescas añadidas esta semana.",
+    "propertiesCount": "propiedades"
+  },
+  "filters": {
+    "all": "Todo",
+    "buy": "Comprar",
+    "rent": "Alquilar"
+  },
+  "search": {
+    "placeholder": "Buscar por ciudad, barrio o dirección...",
+    "button": "Buscar",
+    "filters": "Filtros",
+    "categories": {
+      "All": "Todos",
+      "House": "Casas",
+      "Apartment": "Apartamentos",
+      "Villa": "Villas",
+      "Penthouse": "Penthouses"
+    },
+    "modal": {
+      "title": "Filtros",
+      "location": "Ubicación",
+      "locPlaceholder": "Ciudad, barrio o dirección",
+      "priceRange": "Rango de precio",
+      "minPrice": "Precio Mínimo",
+      "maxPrice": "Precio Máximo",
+      "any": "Ninguno",
+      "propertyType": "Tipo de propiedad",
+      "anyType": "Cualquier Tipo",
+      "bedrooms": "Habitaciones",
+      "bathrooms": "Baños",
+      "amenities": "Comodidades y Características",
+      "clearAll": "Limpiar todos los filtros",
+      "showResults": "Mostrar Resultados"
+    },
+    "amenitiesList": {
+      "Swimming Pool": "Piscina",
+      "Gym": "Gimnasio",
+      "Parking": "Parqueadero",
+      "Air Conditioning": "Aire Acondicionado",
+      "High-speed Wifi": "Wifi Ultra Rápido",
+      "Patio / Terrace": "Patio / Terraza"
+    }
+  },
+  "property": {
+    "rental": "Alquiler",
+    "viewAllPhotos": "Ver Todas las Fotos",
+    "topRatedAgent": "Agente Más Destacado",
+    "scheduleVisit": "Agendar Visita",
+    "contactAgent": "Contactar Agente",
+    "propertyFeatures": "Características de la Propiedad",
+    "space": "Espacio",
+    "bedrooms": "Habitaciones",
+    "bathrooms": "Baños",
+    "garage": "Garaje",
+    "aboutHome": "Sobre esta propiedad",
+    "amenities": "Comodidades",
+    "allRightsReserved": "Todos los derechos reservados.",
+    "amenitiesMap": {
+      "Air Conditioning": "Aire Acondicionado",
+      "Central Heating & Cooling": "Calefacción y Refrigeración Central",
+      "Electric Vehicle Charging": "Carga para Vehículos Eléctricos",
+      "Gym": "Gimnasio",
+      "High-speed Wifi": "Wifi Ultra Rápido",
+      "Parking": "Parqueadero",
+      "Patio / Terrace": "Patio / Terraza",
+      "Private Gym": "Gimnasio Privado",
+      "Smart Home System": "Sistema de Casa Inteligente",
+      "Swimming Pool": "Piscina"
+    }
   }
 }

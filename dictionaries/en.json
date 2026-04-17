@@ -6,7 +6,82 @@
     "savedHomes": "Saved Homes"
   },
   "home": {
-    "title": "Find your sanctuary.",
-    "subtitle": "Explore the finest luxury properties."
+    "titleStart": "Find your ",
+    "titleHighlight": "sanctuary",
+    "titleEnd": ".",
+    "featuredCollections": "Featured Collections",
+    "featuredDesc": "Curated properties for the discerning eye.",
+    "viewAll": "View all",
+    "newInMarket": "New in Market",
+    "newDesc": "Fresh opportunities added this week.",
+    "propertiesCount": "properties"
+  },
+  "filters": {
+    "all": "All",
+    "buy": "Buy",
+    "rent": "Rent"
+  },
+  "search": {
+    "placeholder": "Search by city, neighborhood, or address...",
+    "button": "Search",
+    "filters": "Filters",
+    "categories": {
+      "All": "All",
+      "House": "House",
+      "Apartment": "Apartment",
+      "Villa": "Villa",
+      "Penthouse": "Penthouse"
+    },
+    "modal": {
+      "title": "Filters",
+      "location": "Location",
+      "locPlaceholder": "City, neighborhood, or address",
+      "priceRange": "Price Range",
+      "minPrice": "Min Price",
+      "maxPrice": "Max Price",
+      "any": "Any",
+      "propertyType": "Property Type",
+      "anyType": "Any Type",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "amenities": "Amenities & Features",
+      "clearAll": "Clear all filters",
+      "showResults": "Show Results"
+    },
+    "amenitiesList": {
+      "Swimming Pool": "Swimming Pool",
+      "Gym": "Gym",
+      "Parking": "Parking",
+      "Air Conditioning": "Air Conditioning",
+      "High-speed Wifi": "High-speed Wifi",
+      "Patio / Terrace": "Patio / Terrace"
+    }
+  },
+  "property": {
+    "rental": "Rental",
+    "viewAllPhotos": "View All Photos",
+    "topRatedAgent": "Top Rated Agent",
+    "scheduleVisit": "Schedule Visit",
+    "contactAgent": "Contact Agent",
+    "propertyFeatures": "Property Features",
+    "space": "Space",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "garage": "Garage",
+    "aboutHome": "About this home",
+    "amenities": "Amenities",
+    "allRightsReserved": "All rights reserved.",
+    "amenitiesMap": {
+      "Air Conditioning": "Air Conditioning",
+      "Central Heating & Cooling": "Central Heating & Cooling",
+      "Electric Vehicle Charging": "Electric Vehicle Charging",
+      "Gym": "Gym",
+      "High-speed Wifi": "High-speed Wifi",
+      "Parking": "Parking",
+      "Patio / Terrace": "Patio / Terrace",
+      "Private Gym": "Private Gym",
+      "Smart Home System": "Smart Home System",
+      "Swimming Pool": "Swimming Pool"
+    }
   }
 }
