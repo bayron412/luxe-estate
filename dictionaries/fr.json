@@ -1,0 +1,12 @@
+{
+  "navbar": {
+    "buy": "Acheter",
+    "rent": "Louer",
+    "sell": "Vendre",
+    "savedHomes": "Sauvegardés"
+  },
+  "home": {
+    "title": "Trouvez votre sanctuaire.",
+    "subtitle": "Explorez les meilleures propriétés de luxe."
+  }
+}

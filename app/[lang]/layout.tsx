@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,14 +13,18 @@ export const metadata: Metadata = {
   description: "Find your sanctuary.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }>) {
+  const { lang } = await params;
+  
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >

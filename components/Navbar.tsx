@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Link from 'next/link';
+import LanguageSwitcher from './LanguageSwitcher';
 
-export default function Navbar() {
+export default function Navbar({ dict, lang = 'es' }: { dict?: any, lang?: string }) {
   return (
     <nav className="sticky top-0 z-50 bg-[#EEF6F6]/95 backdrop-blur-md border-b border-nordic-dark/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,13 +18,14 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <a className="text-mosque font-medium text-sm border-b-2 border-mosque px-1 py-1" href="#">Buy</a>
-            <a className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all" href="#">Rent</a>
-            <a className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all" href="#">Sell</a>
-            <a className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all" href="#">Saved Homes</a>
+            <a className="text-mosque font-medium text-sm border-b-2 border-mosque px-1 py-1" href="#">{dict?.buy || 'Buy'}</a>
+            <a className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all" href="#">{dict?.rent || 'Rent'}</a>
+            <a className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all" href="#">{dict?.sell || 'Sell'}</a>
+            <a className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all" href="#">{dict?.savedHomes || 'Saved Homes'}</a>
           </div>
 
           <div className="flex items-center space-x-6">
+            <LanguageSwitcher currentLang={lang} />
             <button className="text-nordic-dark hover:text-mosque transition-colors">
               <span className="material-icons">search</span>
             </button>
@@ -47,10 +49,10 @@ export default function Navbar() {
 
       <div className="md:hidden border-t border-nordic-dark/5 bg-[#EEF6F6] overflow-hidden h-0 transition-all duration-300">
         <div className="px-4 py-2 space-y-1">
-          <a className="block px-3 py-2 rounded-md text-base font-medium text-mosque bg-mosque/10" href="#">Buy</a>
-          <a className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5" href="#">Rent</a>
-          <a className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5" href="#">Sell</a>
-          <a className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5" href="#">Saved Homes</a>
+          <a className="block px-3 py-2 rounded-md text-base font-medium text-mosque bg-mosque/10" href="#">{dict?.buy || 'Buy'}</a>
+          <a className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5" href="#">{dict?.rent || 'Rent'}</a>
+          <a className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5" href="#">{dict?.sell || 'Sell'}</a>
+          <a className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5" href="#">{dict?.savedHomes || 'Saved Homes'}</a>
         </div>
       </div>
     </nav>

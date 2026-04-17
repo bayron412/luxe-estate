@@ -1,0 +1,12 @@
+{
+  "navbar": {
+    "buy": "Buy",
+    "rent": "Rent",
+    "sell": "Sell",
+    "savedHomes": "Saved Homes"
+  },
+  "home": {
+    "title": "Find your sanctuary.",
+    "subtitle": "Explore the finest luxury properties."
+  }
+}

@@ -1,11 +1,14 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import FeaturedPropertyCard from "../components/FeaturedPropertyCard";
-import PropertyCard from "../components/PropertyCard";
-import Pagination from "../components/Pagination/Pagination";
-import SearchFilters from "../components/SearchFilters";
-import { supabase } from "../lib/supabase";
-import { Property, FeaturedProperty } from "../types/property";
+import Navbar from "../../components/Navbar";
+import FeaturedPropertyCard from "../../components/FeaturedPropertyCard";
+import PropertyCard from "../../components/PropertyCard";
+import Pagination from "../../components/Pagination/Pagination";
+import SearchFilters from "../../components/SearchFilters";
+import { getDictionary } from "../../lib/dictionary";
+
+import { supabase } from "../../lib/supabase";
+import { Property, FeaturedProperty } from "../../types/property";
+
 
 const PAGE_SIZE = 8;
 
@@ -38,10 +41,15 @@ function toFeaturedProperty(row: Record<string, unknown>): FeaturedProperty {
 }
 
 export default async function Home({
+  params,
   searchParams,
 }: {
+  params: Promise<{ lang: 'es' | 'en' | 'fr' }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+
   // In Next.js 16, searchParams is a Promise — must await
   const resolvedParams = await searchParams;
   const pageParam = resolvedParams.page;
@@ -112,16 +120,14 @@ export default async function Home({
 
   return (
     <div className="bg-[#EEF6F6] text-nordic-dark font-display antialiased selection:bg-mosque selection:text-white">
-      <Navbar />
+      <Navbar dict={dict.navbar} lang={lang} />
+
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <section className="py-12 md:py-16">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-nordic-dark leading-tight">
-              Find your <span className="relative inline-block">
-                <span className="relative z-10 font-medium">sanctuary</span>
-                <span className="absolute bottom-2 left-0 w-full h-3 bg-mosque/20 -rotate-1 z-0"></span>
-              </span>.
+              {dict.home.title}
             </h1>
 
             <SearchFilters />

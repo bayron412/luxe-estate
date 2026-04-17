@@ -2,12 +2,14 @@ import React from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import Navbar from "../../../components/Navbar";
-import { supabase } from "../../../lib/supabase";
-import { Property } from "../../../types/property";
-import PropertyMapWrapper from "../../../components/PropertyMapWrapper";
+import Navbar from "../../../../components/Navbar";
+import { supabase } from "../../../../lib/supabase";
+import { Property } from "../../../../types/property";
+import PropertyMapWrapper from "../../../../components/PropertyMapWrapper";
+import { getDictionary } from "../../../../lib/dictionary";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string, lang: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
 
@@ -33,10 +35,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function PropertyPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string, lang: 'es' | 'en' | 'fr' }>;
 }) {
   const resolvedParams = await params;
-  const { slug } = resolvedParams;
+  const { slug, lang } = resolvedParams;
+  
+  const dict = await getDictionary(lang);
 
   // Fetch the property
   const { data: row, error } = await supabase
@@ -73,7 +77,7 @@ export default async function PropertyPage({
 
   return (
     <div className="bg-[#EEF6F6] text-nordic font-display antialiased selection:bg-mosque/20 min-h-screen">
-      <Navbar />
+      <Navbar dict={dict.navbar} lang={lang} />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
           
