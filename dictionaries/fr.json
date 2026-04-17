@@ -71,6 +71,10 @@
     "aboutHome": "À propos de ce bien",
     "amenities": "Équipements",
     "allRightsReserved": "Tous droits réservés.",
+    "estimatedPayment": "Paiement Estimé",
+    "startingFrom": "Dès",
+    "withDownPayment": "avec 20% d'apport",
+    "calculateMortgage": "Calculer le Crédit",
     "amenitiesMap": {
       "Air Conditioning": "Climatisation",
       "Central Heating & Cooling": "Chauffage et Climatisation Centralisés",
