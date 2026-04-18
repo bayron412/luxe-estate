@@ -87,5 +87,16 @@
       "Smart Home System": "Smart Home System",
       "Swimming Pool": "Swimming Pool"
     }
+  },
+  "login": {
+    "title": "Welcome to LuxeEstate",
+    "subtitle": "Unlock exclusive properties worldwide.",
+    "google": "Continue with Google",
+    "github": "Continue with GitHub",
+    "noAccount": "Don't have an account?",
+    "signup": "Sign up",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "help": "Help Center"
   }
 }
