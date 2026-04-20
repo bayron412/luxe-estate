@@ -98,5 +98,20 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "help": "Help Center"
+  },
+
+  "admin": {
+    "dashboard": "Dashboard",
+    "properties": "Properties",
+    "users": "Users",
+    "editRole": "Edit Role",
+    "save": "Save",
+    "cancel": "Cancel",
+    "role": "Role",
+    "admin": "Admin",
+    "user": "User",
+    "actions": "Actions",
+    "email": "Email",
+    "backToSite": "Back to Site"
   }
 }

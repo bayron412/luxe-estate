@@ -98,5 +98,20 @@
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio",
     "help": "Centro de Ayuda"
+  },
+
+  "admin": {
+    "dashboard": "Dashboard",
+    "properties": "Propiedades",
+    "users": "Usuarios",
+    "editRole": "Editar Rol",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "role": "Rol",
+    "admin": "Administrador",
+    "user": "Usuario",
+    "actions": "Acciones",
+    "email": "Correo",
+    "backToSite": "Volver al Sitio"
   }
 }

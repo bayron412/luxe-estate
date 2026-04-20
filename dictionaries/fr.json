@@ -98,5 +98,20 @@
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation",
     "help": "Centre d'aide"
+  },
+
+  "admin": {
+    "dashboard": "Tableau de Bord",
+    "properties": "Propriétés",
+    "users": "Utilisateurs",
+    "editRole": "Modifier le rôle",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "role": "Rôle",
+    "admin": "Administrateur",
+    "user": "Utilisateur",
+    "actions": "Actions",
+    "email": "E-mail",
+    "backToSite": "Retour au site"
   }
 }
