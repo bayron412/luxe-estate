@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Navbar from "../../../../components/Navbar";
-import { supabase } from "../../../../lib/supabase";
+import { createClient } from "../../../../lib/supabase/server";
 import { Property } from "../../../../types/property";
 import PropertyMapWrapper from "../../../../components/PropertyMapWrapper";
 import { getDictionary } from "../../../../lib/dictionary";
@@ -13,6 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const resolvedParams = await params;
   const { slug } = resolvedParams;
 
+  const supabase = await createClient();
   const { data } = await supabase
     .from("properties")
     .select("title, description, images")
@@ -43,6 +44,7 @@ export default async function PropertyPage({
   const dict = await getDictionary(lang);
 
   // Fetch the property
+  const supabase = await createClient();
   const { data: row, error } = await supabase
     .from("properties")
     .select("*")

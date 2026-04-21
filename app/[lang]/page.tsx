@@ -5,8 +5,7 @@ import PropertyCard from "../../components/PropertyCard";
 import Pagination from "../../components/Pagination/Pagination";
 import SearchFilters from "../../components/SearchFilters";
 import { getDictionary } from "../../lib/dictionary";
-
-import { supabase } from "../../lib/supabase";
+import { createClient } from "../../lib/supabase/server";
 import { Property, FeaturedProperty } from "../../types/property";
 
 
@@ -67,6 +66,8 @@ export default async function Home({
     (resolvedParams.baths && Number(resolvedParams.baths) > 0) ||
     resolvedParams.amenities
   );
+
+  const supabase = await createClient();
 
   let nonFeaturedQuery = supabase
     .from("properties")

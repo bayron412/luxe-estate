@@ -34,7 +34,7 @@ export default async function AdminLayout({
         
         <nav className="flex-1 p-4 space-y-2">
           <Link
-            href={`/${lang}/admin`}
+            href={`/${lang}/admin/properties`}
             className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium hover:bg-[#EEF6F6] transition-colors text-nordic-dark/80 hover:text-mosque"
           >
             <span className="material-icons text-lg">real_estate_agent</span>
