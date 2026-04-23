@@ -11,14 +11,15 @@ interface PropertyMapProps {
   location: string;
   lat: number;
   lng: number;
+  className?: string;
 }
 
-export default function PropertyMap({ location, lat, lng }: PropertyMapProps) {
+export default function PropertyMap({ location, lat, lng, className = "h-[300px]" }: PropertyMapProps) {
   const center: [number, number] = [lat, lng];
 
   // Leaflet needs to render only on client
   return (
-    <div className="relative w-full h-[300px] rounded-lg overflow-hidden z-0">
+    <div className={`relative w-full rounded-lg overflow-hidden z-0 ${className}`}>
       <MapContainer 
         center={center} 
         zoom={13} 

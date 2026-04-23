@@ -3,6 +3,16 @@
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
+import dynamic from "next/dynamic";
+
+const MapPreview = dynamic(() => import('../PropertyMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-48 w-full bg-gray-100 flex items-center justify-center text-gray-400 font-sf-pro text-sm rounded-lg border border-gray-200">
+      Loading map...
+    </div>
+  )
+});
 
 export default function PropertyForm({
   dict,
@@ -410,15 +420,24 @@ export default function PropertyForm({
                 />
               </div>
             </div>
-            {/* Map Preview Mockup as per HTML */}
-            <div className="relative h-48 w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200 group">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS55FY7gfArnlTpNsdabJk9nBO5uQJgOwIsl8beO34JRZ9dMmjLoIkTuTUO72Y9L5tUmQqTReQWebUWadAWwLusGmRQiIict5sqY--yRaOxuYpTzfR4vv4RKh1ex6oxY64e0kbSeMudNO6pv-gG0WzVWs-pDfvQm5IoTQ1mT-tAV49LDkXAHZl317M1-D7eZw3N8o2ExKWTgg6oMAXOFVnkApIqnb7TZHekwSw8pWQxpJV2EKI8EQKQbQXJaSbjN8gB1n8b-ueWj8" alt="Map view" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-500" />
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <span className="bg-white/90 text-nordic px-3 py-1.5 rounded shadow-sm backdrop-blur-sm text-xs font-bold font-sf-pro flex items-center gap-1">
-                  <span className="material-icons text-sm text-primary">map</span> {dict.admin.preview || "Preview"}
-                </span>
+            {/* Map Preview */}
+            {(formData.lat || formData.lat === 0) && (formData.lng || formData.lng === 0) && !isNaN(Number(formData.lat)) && !isNaN(Number(formData.lng)) && formData.lat !== "" && formData.lng !== "" ? (
+              <MapPreview 
+                lat={Number(formData.lat)} 
+                lng={Number(formData.lng)} 
+                location={formData.location || dict.admin.preview || 'Location Preview'} 
+                className="h-64"
+              />
+            ) : (
+              <div className="relative h-48 w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200 group flex items-center justify-center">
+                <div className="text-center p-6">
+                  <span className="material-icons text-gray-400 text-3xl mb-2">map</span>
+                  <p className="text-sm text-gray-500 font-sf-pro">
+                    {dict.admin.enterCoordinatesForMap || "Enter latitude and longitude to preview location on map."}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
