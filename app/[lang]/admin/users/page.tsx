@@ -2,21 +2,36 @@ import React from "react";
 import { getDictionary } from "../../../../lib/dictionary";
 import { createClient } from "../../../../lib/supabase/server";
 import UserRoleList from "./UserRoleList";
+import Pagination from "../../../../components/Pagination/Pagination";
+
+const PAGE_SIZE = 5;
 
 export default async function AdminUsersPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ lang: "es" | "en" | "fr" }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { lang } = await params;
+  const resolvedSearchParams = await searchParams;
+  const pageParam = resolvedSearchParams.page;
+  const currentPage = Math.max(1, Number(Array.isArray(pageParam) ? pageParam[0] : (pageParam ?? "1")));
+
   const dict = await getDictionary(lang);
   const supabase = await createClient();
 
-  const { data: users, error } = await supabase.rpc("get_users_with_roles");
+  const { data: allUsers, error } = await supabase.rpc("get_users_with_roles");
 
   if (error) {
     console.error("Error fetching users:", error);
   }
+
+  const totalCount = allUsers?.length || 0;
+  const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+  const from = (currentPage - 1) * PAGE_SIZE;
+  const to = from + PAGE_SIZE;
+  const users = allUsers?.slice(from, to) || [];
 
   return (
     <>
@@ -61,20 +76,17 @@ export default async function AdminUsersPage({
         <UserRoleList initialUsers={users || []} dict={dict.admin} />
       </section>
       <footer className="mt-8 border-t border-gray-100 bg-white/50 py-6 rounded-b-xl">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between px-6 gap-4">
           <p className="text-sm text-gray-500 font-medium">
-            {dict.admin.showing} <span className="font-bold text-nordic">1</span> {dict.admin.to}{" "}
-            <span className="font-bold text-nordic">{users?.length || 0}</span> {dict.admin.of}{" "}
-            <span className="font-bold text-nordic">{users?.length || 0}</span> {dict.admin.results}
+            {dict.admin.showing} <span className="font-bold text-nordic">{from + 1}</span> {dict.admin.to}{" "}
+            <span className="font-bold text-nordic">{Math.min(from + users.length, totalCount)}</span> {dict.admin.of}{" "}
+            <span className="font-bold text-nordic">{totalCount}</span> {dict.admin.results}
           </p>
-          <div className="flex gap-2">
-            <button className="px-4 py-2 text-xs font-bold border border-gray-200 rounded-lg text-gray-400 bg-white hover:bg-gray-50 transition-all disabled:opacity-50">
-              {dict.admin.previous}
-            </button>
-            <button className="px-4 py-2 text-xs font-bold border border-gray-200 rounded-lg text-nordic bg-white hover:bg-gray-50 transition-all shadow-sm">
-              {dict.admin.next}
-            </button>
-          </div>
+          <Pagination 
+            currentPage={currentPage} 
+            totalPages={totalPages} 
+            baseUrl={`/${lang}/admin/users`} 
+          />
         </div>
       </footer>
     </>

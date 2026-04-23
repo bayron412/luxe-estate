@@ -1,24 +1,47 @@
 import React from "react";
 import { getDictionary } from "../../../../lib/dictionary";
 import { createClient } from "../../../../lib/supabase/server";
+import Pagination from "../../../../components/Pagination/Pagination";
+
+const PAGE_SIZE = 5;
 
 export default async function AdminPropertiesPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ lang: "es" | "en" | "fr" }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { lang } = await params;
+  const resolvedSearchParams = await searchParams;
+  const pageParam = resolvedSearchParams.page;
+  const currentPage = Math.max(1, Number(Array.isArray(pageParam) ? pageParam[0] : (pageParam ?? "1")));
+
   const dict = await getDictionary(lang);
   const supabase = await createClient();
 
-  const { data: properties, error } = await supabase
-    .from("properties")
-    .select("*")
-    .order("created_at", { ascending: false });
+  const from = (currentPage - 1) * PAGE_SIZE;
+  const to = from + PAGE_SIZE - 1;
 
-  const totalListings = properties?.length || 0;
-  const activeProperties = properties?.filter(p => p.status_tag?.toLowerCase() === "active" || !p.status_tag).length || 0;
-  const pendingProperties = properties?.filter(p => p.status_tag?.toLowerCase() === "pending" || p.is_rental).length || 0;
+  const { data: properties, count: totalCount, error } = await supabase
+    .from("properties")
+    .select("*", { count: 'exact' })
+    .order("created_at", { ascending: false })
+    .range(from, to);
+
+  const totalPages = Math.ceil((totalCount || 0) / PAGE_SIZE);
+
+  // We still need total counts for stats, but let's just use the current fetch for now 
+  // or do a separate quick count if needed. For now, showing based on totalCount.
+  const totalListings = totalCount || 0;
+  
+  // Fetch only status related fields for ALL properties to calculate stats accurately
+  const { data: allStatusData } = await supabase
+    .from("properties")
+    .select("status_tag, is_rental");
+
+  const activeProperties = allStatusData?.filter(p => p.status_tag?.toLowerCase() === "active" || !p.status_tag).length || 0;
+  const pendingProperties = allStatusData?.filter(p => p.status_tag?.toLowerCase() === "pending" || p.is_rental).length || 0;
 
   return (
     <div className="animate-fade-in-down">
@@ -179,20 +202,17 @@ export default async function AdminPropertiesPage({
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between bg-gray-50/50">
+        <div className="px-6 py-4 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 bg-gray-50/50">
           <div className="text-sm text-gray-500">
-            {dict.admin.showing} <span className="font-medium text-nordic">1</span> {dict.admin.to}{" "}
-            <span className="font-medium text-nordic">{properties?.length || 0}</span> {dict.admin.of}{" "}
-            <span className="font-medium text-nordic">{properties?.length || 0}</span> {dict.admin.results}
+            {dict.admin.showing} <span className="font-bold text-nordic">{from + 1}</span> {dict.admin.to}{" "}
+            <span className="font-bold text-nordic">{Math.min(to + 1, totalListings)}</span> {dict.admin.of}{" "}
+            <span className="font-bold text-nordic">{totalListings}</span> {dict.admin.results}
           </div>
-          <div className="flex gap-2">
-            <button className="px-4 py-1.5 text-sm border border-gray-200 rounded-lg text-gray-500 hover:bg-white transition-colors disabled:opacity-50">
-              {dict.admin.previous}
-            </button>
-            <button className="px-4 py-1.5 text-sm border border-gray-200 rounded-lg text-gray-500 hover:bg-white transition-colors">
-              {dict.admin.next}
-            </button>
-          </div>
+          <Pagination 
+            currentPage={currentPage} 
+            totalPages={totalPages} 
+            baseUrl={`/${lang}/admin/properties`} 
+          />
         </div>
       </div>
     </div>

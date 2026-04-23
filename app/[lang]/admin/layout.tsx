@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getDictionary } from "../../../lib/dictionary";
 import { createClient } from "../../../lib/supabase/server";
 import AdminNav from "./AdminNav";
+import LogoutButton from "../../../components/LogoutButton";
 
 export default async function AdminLayout({
   children,
@@ -50,6 +51,7 @@ export default async function AdminLayout({
                   <span className="material-symbols-outlined text-gray-400 text-lg">person</span>
                 )}
               </div>
+              <LogoutButton />
             </div>
           </div>
         </div>

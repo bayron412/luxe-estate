@@ -5,9 +5,10 @@ import Link from 'next/link';
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
+  baseUrl?: string;
 }
 
-export default function Pagination({ currentPage, totalPages }: PaginationProps) {
+export default function Pagination({ currentPage, totalPages, baseUrl = '' }: PaginationProps) {
   if (totalPages <= 1) return null;
 
   const pages = getPaginationRange(currentPage, totalPages);
@@ -17,7 +18,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
       {/* Previous button */}
       {currentPage > 1 ? (
         <Link
-          href={`/?page=${currentPage - 1}`}
+          href={`${baseUrl}/?page=${currentPage - 1}`}
           className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-gray-100 text-nordic hover:border-primary/30 hover:text-primary font-bold text-sm transition-all hover:shadow-md group"
           aria-label="Previous page"
         >
@@ -44,7 +45,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
           ) : (
             <Link
               key={page}
-              href={`/?page=${page}`}
+              href={`${baseUrl}/?page=${page}`}
               aria-label={`Page ${page}`}
               aria-current={page === currentPage ? 'page' : undefined}
               className={`w-9 h-9 flex items-center justify-center rounded-lg text-sm font-bold transition-all ${
@@ -62,7 +63,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
       {/* Next button */}
       {currentPage < totalPages ? (
         <Link
-          href={`/?page=${currentPage + 1}`}
+          href={`${baseUrl}/?page=${currentPage + 1}`}
           className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-gray-100 text-nordic hover:border-primary/30 hover:text-primary font-bold text-sm transition-all hover:shadow-md group"
           aria-label="Next page"
         >
