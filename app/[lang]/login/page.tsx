@@ -4,7 +4,7 @@ import { getDictionary } from "../../../lib/dictionary";
 
 interface LoginPageProps {
   params: Promise<{
-    lang: "es" | "en" | "fr";
+    lang: string;
   }>;
 }
 

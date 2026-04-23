@@ -10,7 +10,7 @@ export default async function AdminPropertiesPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ lang: "es" | "en" | "fr" }>;
+  params: Promise<{ lang: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { lang } = await params;

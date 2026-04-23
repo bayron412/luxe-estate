@@ -10,7 +10,7 @@ export default async function AdminLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ lang: "es" | "en" | "fr" }>;
+  params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);

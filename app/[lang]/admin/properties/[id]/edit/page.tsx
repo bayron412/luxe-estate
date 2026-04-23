@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 export default async function EditPropertyPage({
   params,
 }: {
-  params: Promise<{ lang: "en" | "es" | "fr", id: string }>;
+  params: Promise<{ lang: string, id: string }>;
 }) {
   const { lang, id } = await params;
   const dict = await getDictionary(lang);

@@ -6,7 +6,7 @@ import Link from "next/link";
 export default async function CreatePropertyPage({
   params,
 }: {
-  params: Promise<{ lang: "en" | "es" | "fr" }>;
+  params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
