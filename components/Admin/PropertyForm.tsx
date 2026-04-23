@@ -30,6 +30,8 @@ export default function PropertyForm({
     baths: initialData?.baths || 0,
     parking: initialData?.parking || 0,
     amenities: initialData?.amenities || [],
+    lat: initialData?.lat || "",
+    lng: initialData?.lng || "",
   });
 
   const [images, setImages] = useState<string[]>(initialData?.images || []);
@@ -138,8 +140,8 @@ export default function PropertyForm({
         images,
         slug: initialData ? initialData.slug : slug,
         is_rental,
-        lat: initialData?.lat || 34.0522,
-        lng: initialData?.lng || -118.2437,
+        lat: formData.lat ? Number(formData.lat) : 34.0522,
+        lng: formData.lng ? Number(formData.lng) : -118.2437,
       };
 
       if (initialData?.id) {
@@ -377,6 +379,36 @@ export default function PropertyForm({
                 className="w-full px-4 py-2.5 rounded-md border-gray-200 bg-white text-nordic placeholder-gray-400 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-sm font-sf-pro"
                 placeholder={dict.admin.addressPlaceholder || "Street Address, City, Zip"}
               />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-nordic mb-1.5 font-sf-pro" htmlFor="lat">
+                  {dict.admin.latitude || "Latitude"}
+                </label>
+                <input
+                  id="lat"
+                  type="number"
+                  step="any"
+                  value={formData.lat}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2.5 rounded-md border-gray-200 bg-white text-nordic placeholder-gray-400 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-sm font-sf-pro"
+                  placeholder="34.0522"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-nordic mb-1.5 font-sf-pro" htmlFor="lng">
+                  {dict.admin.longitude || "Longitude"}
+                </label>
+                <input
+                  id="lng"
+                  type="number"
+                  step="any"
+                  value={formData.lng}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2.5 rounded-md border-gray-200 bg-white text-nordic placeholder-gray-400 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-sm font-sf-pro"
+                  placeholder="-118.2437"
+                />
+              </div>
             </div>
             {/* Map Preview Mockup as per HTML */}
             <div className="relative h-48 w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200 group">
