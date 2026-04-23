@@ -21,9 +21,9 @@ export default async function AdminLayout({
   } = await supabase.auth.getUser();
 
   return (
-    <div className="min-h-screen bg-slate-50 font-display flex flex-col antialiased text-nordic">
+    <div className="min-h-screen bg-background-light font-display flex flex-col antialiased text-nordic">
       {/* Navbar */}
-      <nav className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 sticky top-0 z-50 shadow-sm">
+      <nav className="bg-white/90 backdrop-blur-md border-b border-primary/10 px-4 sm:px-6 lg:px-8 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between h-16">
           <div className="flex items-center gap-12">
             <Link href={`/${lang}`} className="flex-shrink-0 flex items-center gap-2">
@@ -41,9 +41,9 @@ export default async function AdminLayout({
                 <span className="text-sm font-semibold text-nordic truncate max-w-[120px]">
                   {user?.email?.split("@")[0] || "Alex Morgan"}
                 </span>
-                <span className="text-[10px] text-gray-500">Premium Agent</span>
+                <span className="text-[10px] text-gray-500 uppercase tracking-wider font-medium">Premium Agent</span>
               </div>
-              <div className="h-9 w-9 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200 ring-2 ring-white">
+              <div className="h-9 w-9 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border-2 border-white ring-1 ring-primary/5 shadow-sm">
                 {user?.user_metadata?.avatar_url ? (
                    <img src={user.user_metadata.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
                 ) : (
@@ -57,15 +57,15 @@ export default async function AdminLayout({
 
       {/* Main Content */}
       <main className="flex-1 overflow-x-hidden overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-10">
           {children}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-gray-100 bg-white py-6 px-4 sm:px-6 lg:px-8">
+      <footer className="mt-auto border-t border-primary/10 bg-white py-6 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-center">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-400">
             © 2023 Haven Property Management. All rights reserved.
           </p>
         </div>

@@ -21,20 +21,16 @@ export default async function AdminUsersPage({
   return (
     <>
       <header className="w-full pt-8 pb-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-nordic">
-              {dict.admin.users}
-            </h1>
-            <p className="text-gray-500 mt-1 text-sm">
-              Manage user access and roles for your properties.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-            <div className="relative group w-full md:w-80">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <span className="material-icons text-gray-400 group-focus-within:text-primary text-xl">search</span>
-              </div>
+        <div className="animate-fade-in-down">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div>
+              <h1 className="text-3xl font-bold text-nordic tracking-tight">
+                {dict.admin.adminUsers}
+              </h1>
+              <p className="text-gray-500 mt-1">{dict.admin.manageAccess}</p>
+            </div>
+            <div className="relative flex-1 max-w-md w-full">
+              <span className="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
               <input
                 className="block w-full pl-10 pr-3 py-2.5 border border-gray-200 rounded-lg bg-white text-nordic shadow-sm placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
                 placeholder="Search by name, email..."
@@ -64,40 +60,20 @@ export default async function AdminUsersPage({
         </div>
         <UserRoleList initialUsers={users || []} dict={dict.admin} />
       </section>
-      <footer className="mt-auto border-t border-gray-200 bg-white py-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
-          <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm text-gray-500">
-                Showing <span className="font-medium text-nordic">1</span> to{" "}
-                <span className="font-medium text-nordic">{(users?.length || 0)}</span> of{" "}
-                <span className="font-medium text-nordic">{(users?.length || 0)}</span> users
-              </p>
-            </div>
-            <div>
-              <nav aria-label="Pagination" className="relative z-0 inline-flex rounded-md shadow-none -space-x-px">
-                <button className="relative inline-flex items-center px-2 py-2 rounded-l-md text-sm font-medium text-gray-400 hover:text-primary transition-colors">
-                  <span className="sr-only">Previous</span>
-                  <span className="material-icons text-xl">chevron_left</span>
-                </button>
-                <button className="z-10 bg-primary text-white relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md mx-1 shadow-sm">
-                  1
-                </button>
-                <button className="bg-transparent text-gray-600 hover:bg-gray-100 relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md mx-1 transition-colors">
-                  2
-                </button>
-                <button className="bg-transparent text-gray-600 hover:bg-gray-100 relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md mx-1 transition-colors">
-                  3
-                </button>
-                <span className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-400">
-                  ...
-                </span>
-                <button className="relative inline-flex items-center px-2 py-2 rounded-r-md text-sm font-medium text-gray-400 hover:text-primary transition-colors">
-                  <span className="sr-only">Next</span>
-                  <span className="material-icons text-xl">chevron_right</span>
-                </button>
-              </nav>
-            </div>
+      <footer className="mt-8 border-t border-gray-100 bg-white/50 py-6 rounded-b-xl">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
+          <p className="text-sm text-gray-500 font-medium">
+            {dict.admin.showing} <span className="font-bold text-nordic">1</span> {dict.admin.to}{" "}
+            <span className="font-bold text-nordic">{users?.length || 0}</span> {dict.admin.of}{" "}
+            <span className="font-bold text-nordic">{users?.length || 0}</span> {dict.admin.results}
+          </p>
+          <div className="flex gap-2">
+            <button className="px-4 py-2 text-xs font-bold border border-gray-200 rounded-lg text-gray-400 bg-white hover:bg-gray-50 transition-all disabled:opacity-50">
+              {dict.admin.previous}
+            </button>
+            <button className="px-4 py-2 text-xs font-bold border border-gray-200 rounded-lg text-nordic bg-white hover:bg-gray-50 transition-all shadow-sm">
+              {dict.admin.next}
+            </button>
           </div>
         </div>
       </footer>
