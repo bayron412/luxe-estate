@@ -2,6 +2,7 @@ import React from "react";
 import { getDictionary } from "../../../../lib/dictionary";
 import { createClient } from "../../../../lib/supabase/server";
 import Pagination from "../../../../components/Pagination/Pagination";
+import Link from "next/link";
 
 const PAGE_SIZE = 5;
 
@@ -57,9 +58,9 @@ export default async function AdminPropertiesPage({
           <button className="bg-white border border-gray-200 text-nordic hover:bg-gray-50 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors shadow-sm inline-flex items-center gap-2">
             <span className="material-icons text-base">filter_list</span> {dict.admin.filter}
           </button>
-          <button className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg text-sm font-medium shadow-md shadow-primary/20 transition-all transform hover:-translate-y-0.5 inline-flex items-center gap-2">
+          <Link href={`/${lang}/admin/properties/create`} className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg text-sm font-medium shadow-md shadow-primary/20 transition-all transform hover:-translate-y-0.5 inline-flex items-center gap-2">
             <span className="material-icons text-base">add</span> {dict.admin.addNew}
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -176,12 +177,13 @@ export default async function AdminPropertiesPage({
 
                 {/* Actions */}
                 <div className="col-span-12 md:col-span-2 flex items-center justify-end gap-2">
-                  <button
+                  <Link
+                    href={`/${lang}/admin/properties/${property.id}/edit`}
                     className="p-2 rounded-lg text-gray-400 hover:text-primary hover:bg-hint-green/30 transition-all"
-                    title={dict.admin.editRole}
+                    title="Edit"
                   >
                     <span className="material-icons text-xl">edit</span>
-                  </button>
+                  </Link>
                   <button
                     className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-all"
                     title={dict.admin.actions}
