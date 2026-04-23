@@ -13,7 +13,7 @@ export default async function AdminLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang as "es" | "en" | "fr");
   const supabase = await createClient();
 
   // Get current user auth
