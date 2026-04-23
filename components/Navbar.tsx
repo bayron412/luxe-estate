@@ -6,37 +6,37 @@ import UserMenu from './UserMenu';
 
 export default function Navbar({ dict, lang = 'es' }: { dict?: any, lang?: string }) {
   return (
-    <nav className="sticky top-0 z-50 bg-[#EEF6F6]/95 backdrop-blur-md border-b border-nordic-dark/10">
+    <nav className="sticky top-0 z-50 bg-background-light/95 backdrop-blur-md border-b border-nordic/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link href="/">
-            <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-              <div className="w-8 h-8 rounded-lg bg-nordic-dark flex items-center justify-center">
-                <span className="material-icons text-white text-lg">apartment</span>
+            <div className="flex-shrink-0 flex items-center gap-2.5 cursor-pointer group">
+              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
+                <span className="material-symbols-rounded text-white text-2xl">real_estate_agent</span>
               </div>
-              <span className="text-xl font-semibold tracking-tight text-nordic-dark">LuxeEstate</span>
+              <span className="text-2xl font-bold tracking-tight text-nordic">LuxeEstate</span>
             </div>
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <a className="text-mosque font-medium text-sm border-b-2 border-mosque px-1 py-1" href="#">{dict?.buy || 'Buy'}</a>
-            <a className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all" href="#">{dict?.rent || 'Rent'}</a>
-            <a className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all" href="#">{dict?.sell || 'Sell'}</a>
-            <a className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all" href="#">{dict?.savedHomes || 'Saved Homes'}</a>
+            <a className="text-primary font-bold text-sm border-b-2 border-primary px-1 py-1" href="#">{dict?.buy || 'Buy'}</a>
+            <a className="text-nordic/60 hover:text-nordic font-bold text-sm px-1 py-1 transition-all" href="#">{dict?.rent || 'Rent'}</a>
+            <a className="text-nordic/60 hover:text-nordic font-bold text-sm px-1 py-1 transition-all" href="#">{dict?.sell || 'Sell'}</a>
+            <a className="text-nordic/60 hover:text-nordic font-bold text-sm px-1 py-1 transition-all" href="#">{dict?.savedHomes || 'Saved Homes'}</a>
           </div>
 
           <div className="flex items-center space-x-6">
-            <button className="text-nordic-dark hover:text-mosque transition-colors">
-              <span className="material-icons">search</span>
+            <button className="text-nordic hover:text-primary transition-colors">
+              <span className="material-symbols-rounded">search</span>
             </button>
-            <button className="text-nordic-dark hover:text-mosque transition-colors relative">
-              <span className="material-icons">notifications_none</span>
-              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-[#EEF6F6]"></span>
+            <button className="text-nordic hover:text-primary transition-colors relative">
+              <span className="material-symbols-rounded">notifications</span>
+              <span className="absolute top-0.5 right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-background-light"></span>
             </button>
             
             <UserMenu />
 
-            <div className="pl-2 border-l border-nordic-dark/10 h-8 flex items-center">
+            <div className="pl-4 border-l border-nordic/10 h-8 flex items-center">
               <LanguageSwitcher currentLang={lang} />
             </div>
           </div>

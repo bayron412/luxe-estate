@@ -18,15 +18,15 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
       {currentPage > 1 ? (
         <Link
           href={`/?page=${currentPage - 1}`}
-          className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-nordic-dark/10 text-nordic-dark hover:border-mosque hover:text-mosque font-medium text-sm transition-all hover:shadow-md"
+          className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-gray-100 text-nordic hover:border-primary/30 hover:text-primary font-bold text-sm transition-all hover:shadow-md group"
           aria-label="Previous page"
         >
-          <span className="material-icons text-base leading-none">chevron_left</span>
+          <span className="material-symbols-rounded text-lg leading-none group-hover:-translate-x-1 transition-transform">chevron_left</span>
           Prev
         </Link>
       ) : (
-        <span className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-nordic-dark/10 text-nordic-dark/30 font-medium text-sm cursor-not-allowed select-none">
-          <span className="material-icons text-base leading-none">chevron_left</span>
+        <span className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-gray-100 text-gray-300 font-bold text-sm cursor-not-allowed select-none">
+          <span className="material-symbols-rounded text-lg leading-none">chevron_left</span>
           Prev
         </span>
       )}
@@ -47,10 +47,10 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
               href={`/?page=${page}`}
               aria-label={`Page ${page}`}
               aria-current={page === currentPage ? 'page' : undefined}
-              className={`w-9 h-9 flex items-center justify-center rounded-lg text-sm font-medium transition-all ${
+              className={`w-9 h-9 flex items-center justify-center rounded-lg text-sm font-bold transition-all ${
                 page === currentPage
-                  ? 'bg-nordic-dark text-white shadow-sm'
-                  : 'bg-white border border-nordic-dark/10 text-nordic-dark hover:border-mosque hover:text-mosque hover:shadow-md'
+                  ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                  : 'bg-white border border-gray-100 text-nordic hover:border-primary/30 hover:text-primary hover:shadow-md'
               }`}
             >
               {page}
@@ -63,16 +63,16 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
       {currentPage < totalPages ? (
         <Link
           href={`/?page=${currentPage + 1}`}
-          className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-nordic-dark/10 text-nordic-dark hover:border-mosque hover:text-mosque font-medium text-sm transition-all hover:shadow-md"
+          className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-gray-100 text-nordic hover:border-primary/30 hover:text-primary font-bold text-sm transition-all hover:shadow-md group"
           aria-label="Next page"
         >
           Next
-          <span className="material-icons text-base leading-none">chevron_right</span>
+          <span className="material-symbols-rounded text-lg leading-none group-hover:translate-x-1 transition-transform">chevron_right</span>
         </Link>
       ) : (
-        <span className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-nordic-dark/10 text-nordic-dark/30 font-medium text-sm cursor-not-allowed select-none">
+        <span className="flex items-center gap-1 px-4 py-2 rounded-lg bg-white border border-gray-100 text-gray-300 font-bold text-sm cursor-not-allowed select-none">
           Next
-          <span className="material-icons text-base leading-none">chevron_right</span>
+          <span className="material-symbols-rounded text-lg leading-none">chevron_right</span>
         </span>
       )}
     </nav>

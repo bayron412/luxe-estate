@@ -120,18 +120,17 @@ export default async function Home({
   const totalPages = Math.ceil(totalCount / PAGE_SIZE);
 
   return (
-    <div className="bg-[#EEF6F6] text-nordic-dark font-display antialiased selection:bg-mosque selection:text-white">
+    <div className="bg-background-light text-nordic font-display antialiased selection:bg-primary selection:text-white">
       <Navbar dict={dict.navbar} lang={lang} />
-
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <section className="py-12 md:py-16">
           <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-nordic-dark leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-nordic leading-tight tracking-tight">
               {dict.home.titleStart}
-              <span className="relative inline-block">
+              <span className="relative inline-block mx-1">
                 <span className="relative z-10 font-medium">{dict.home.titleHighlight}</span>
-                <span className="absolute bottom-2 left-0 w-full h-3 bg-mosque/20 -rotate-1 z-0"></span>
+                <span className="absolute bottom-1.5 left-0 w-full h-3 bg-primary/20 -rotate-1 z-0"></span>
               </span>
               {dict.home.titleEnd}
             </h1>
@@ -145,17 +144,17 @@ export default async function Home({
           <section className="mb-16">
             <div className="flex items-end justify-between mb-8">
               <div>
-                <h2 className="text-2xl font-light text-nordic-dark">{dict.home.featuredCollections}</h2>
-                <p className="text-nordic-muted mt-1 text-sm">{dict.home.featuredDesc}</p>
+                <h2 className="text-2xl font-light text-nordic">{dict.home.featuredCollections}</h2>
+                <p className="text-gray-500 mt-1 text-sm">{dict.home.featuredDesc}</p>
               </div>
-              <a className="hidden sm:flex items-center gap-1 text-sm font-medium text-mosque hover:opacity-70 transition-opacity" href="#">
+              <a className="hidden sm:flex items-center gap-1 text-sm font-bold text-primary hover:opacity-70 transition-opacity" href="#">
                 {dict.home.viewAll} <span className="material-icons text-sm">arrow_forward</span>
               </a>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredProperties.map((property) => (
-                <FeaturedPropertyCard key={property.id} property={property} />
+                <FeaturedPropertyCard key={property.id} property={property} dict={dict.home} />
               ))}
             </div>
           </section>
@@ -165,31 +164,33 @@ export default async function Home({
         <section>
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-light text-nordic-dark">{dict.home.newInMarket}</h2>
-              <p className="text-nordic-muted mt-1 text-sm">
+              <h2 className="text-2xl font-light text-nordic">{dict.home.newInMarket}</h2>
+              <p className="text-gray-500 mt-1 text-sm">
                 {dict.home.newDesc}{" "}
-                <span className="text-nordic-dark/40 text-xs">
+                <span className="text-nordic/30 text-xs font-bold ml-1 uppercase">
                   ({totalCount} {dict.home.propertiesCount})
                 </span>
               </p>
             </div>
-            <div className="hidden md:flex bg-white p-1 rounded-lg">
-              <button className="px-4 py-1.5 rounded-md text-sm font-medium bg-nordic-dark text-white shadow-sm">{dict.filters.all}</button>
-              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark">{dict.filters.buy}</button>
-              <button className="px-4 py-1.5 rounded-md text-sm font-medium text-nordic-muted hover:text-nordic-dark">{dict.filters.rent}</button>
+            <div className="hidden md:flex bg-white p-1 rounded-xl shadow-soft">
+              <button className="px-5 py-1.5 rounded-lg text-xs font-bold bg-nordic text-white shadow-sm uppercase tracking-wider">{dict.filters.all}</button>
+              <button className="px-5 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-nordic uppercase tracking-wider transition-colors">{dict.filters.buy}</button>
+              <button className="px-5 py-1.5 rounded-lg text-xs font-bold text-gray-400 hover:text-nordic uppercase tracking-wider transition-colors">{dict.filters.rent}</button>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {properties.map((property) => (
               <div key={property.id} className="h-full">
-                <PropertyCard property={property} />
+                <PropertyCard property={property} dict={dict.home} />
               </div>
             ))}
           </div>
 
           {/* Server-side pagination */}
-          <Pagination currentPage={currentPage} totalPages={totalPages} />
+          <div className="mt-12">
+            <Pagination currentPage={currentPage} totalPages={totalPages} />
+          </div>
         </section>
       </main>
     </div>

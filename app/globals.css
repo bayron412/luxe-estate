@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #EEF6F6; /* Clear Day */
-  --foreground: #19322F; /* Nordic */
+  --background: #EEF6F6;
+  --foreground: #19322F;
 }
 
 @theme {
@@ -14,6 +15,7 @@
   --color-nordic: #19322F;
   --color-active-green: #D9ECC8;
   --color-hint-green: #D9ECC8;
+  --color-accent: #D9ECC8;
   --color-card-white: #FFFFFF;
   
   --font-display: var(--font-inter);

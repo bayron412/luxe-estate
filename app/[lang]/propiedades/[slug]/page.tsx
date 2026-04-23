@@ -78,14 +78,15 @@ export default async function PropertyPage({
   const galleryImages = images.slice(1);
 
   return (
-    <div className="bg-[#EEF6F6] text-nordic font-display antialiased selection:bg-mosque/20 min-h-screen">
+    <div className="bg-background-light text-nordic font-display antialiased min-h-screen">
       <Navbar dict={dict.navbar} lang={lang} />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+      
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Photos and Main Content section */}
-          <div className="lg:col-span-8 space-y-4">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-xl shadow-sm group">
+          <div className="lg:col-span-8 space-y-6">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-soft group">
               <Image
                 alt={property.title}
                 src={mainImage}
@@ -94,33 +95,33 @@ export default async function PropertyPage({
                 priority
                 sizes="(max-width: 1024px) 100vw, 66vw"
               />
-              <div className="absolute top-4 left-4 flex gap-2">
-                <span className="bg-mosque text-white text-xs font-medium px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
-                  {property.statusTag}
+              <div className="absolute top-6 left-6 flex gap-3">
+                <span className="bg-primary text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
+                  {property.statusTag || "For Sale"}
                 </span>
                 {property.isRental && (
-                  <span className="bg-white/90 backdrop-blur text-nordic text-xs font-medium px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                  <span className="bg-white/90 backdrop-blur-sm text-nordic text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
                     {dict.property.rental}
                   </span>
                 )}
               </div>
-              <button className="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-nordic px-4 py-2 rounded-lg text-sm font-medium shadow-lg backdrop-blur transition-all flex items-center gap-2">
-                <span className="material-icons text-sm">grid_view</span>
+              <button className="absolute bottom-6 right-6 bg-white/90 hover:bg-white text-nordic px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest shadow-xl backdrop-blur-sm transition-all flex items-center gap-2 group">
+                <span className="material-symbols-rounded text-lg group-hover:rotate-12 transition-transform">grid_view</span>
                 {dict.property.viewAllPhotos}
               </button>
             </div>
 
             {/* Thumbnail Gallery Row */}
             {galleryImages.length > 0 && (
-              <div className="flex gap-4 overflow-x-auto hide-scroll pb-2 snap-x">
-                {galleryImages.map((img, idx) => (
-                  <div key={idx} className="flex-none w-48 aspect-[4/3] rounded-lg overflow-hidden cursor-pointer opacity-70 hover:opacity-100 transition-opacity snap-start relative">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+                {galleryImages.slice(0, 3).map((img, idx) => (
+                  <div key={idx} className="aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-soft hover:shadow-soft-hover transition-all relative group">
                     <Image
                       alt={`Gallery view ${idx + 1}`}
                       src={img}
                       fill
-                      className="object-cover"
-                      sizes="192px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      sizes="(max-width: 768px) 50vw, 33vw"
                     />
                   </div>
                 ))}
@@ -129,102 +130,124 @@ export default async function PropertyPage({
           </div>
 
           {/* Right Sidebar - Pricing, Agent, Call to Action */}
-          <div className="lg:col-span-4 relative">
-            <div className="sticky top-28 space-y-6">
-              
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-mosque/5">
-                <div className="mb-4">
-                  <h1 className="text-4xl font-display font-light text-nordic mb-2">{property.price}</h1>
-                  <p className="text-nordic/60 font-medium flex items-center gap-1">
-                    <span className="material-icons text-mosque text-sm">location_on</span>
-                    {property.location}
-                  </p>
-                </div>
-                <div className="h-px bg-slate-100 my-6"></div>
-                <div className="flex items-center gap-4 mb-6">
-                  {/* Dummy Agent - in a real app this would come from DB */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="bg-white p-8 rounded-2xl shadow-soft border border-nordic/5 space-y-8">
+              <div>
+                <h1 className="text-5xl font-bold text-nordic tracking-tight mb-2">{property.price}</h1>
+                <p className="text-gray-500 font-medium flex items-center gap-1.5">
+                  <span className="material-symbols-rounded text-primary text-xl">location_on</span>
+                  {property.location}
+                </p>
+              </div>
+
+              <div className="h-px bg-gray-100"></div>
+
+              <div className="flex items-center gap-4">
+                <div className="relative">
                   <img 
                     alt="Sarah Jenkins" 
-                    className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-sm" 
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4TxUmdQRb2VMjuaNxLEwLorv_dgHzoET2_wL5toSvew6nhtziaR3DX-U69DBN7J74yO6oKokpw8tqEFutJf13MeXghCy7FwZuAxnoJel6FYcKeCRUVinpZtrNnkZvXd-MY5_2MAtRD7JP5BieHixfCaeAPW04jm-y-nvF3HIrwcZ_HRDk_MrNP5WiPV3u9zNrEgM-SQoWGh4xLVSV444aZAbVl03mjjsW5WBpIeodCyqJxprTDp6Q157D06VxcdUSCf-l9UKQT-w"
+                    className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-soft" 
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150"
                   />
-                  <div>
-                    <h3 className="font-semibold text-nordic">Sarah Jenkins</h3>
-                    <div className="flex items-center gap-1 text-xs text-mosque font-medium">
-                      <span className="material-icons text-[14px]">star</span>
-                      <span>{dict.property.topRatedAgent}</span>
-                    </div>
-                  </div>
-                  <div className="ml-auto flex gap-2">
-                    <button className="p-2 rounded-full bg-mosque/10 text-mosque hover:bg-mosque hover:text-white transition-colors">
-                      <span className="material-icons text-sm">chat</span>
-                    </button>
-                    <button className="p-2 rounded-full bg-mosque/10 text-mosque hover:bg-mosque hover:text-white transition-colors">
-                      <span className="material-icons text-sm">call</span>
-                    </button>
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-4 border-white rounded-full"></div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-nordic truncate">Sarah Jenkins</h3>
+                  <div className="flex items-center gap-1.5 text-[10px] text-primary font-bold uppercase tracking-widest mt-0.5">
+                    <span className="material-symbols-rounded text-sm">verified</span>
+                    {dict.property.topRatedAgent}
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <button className="w-full bg-mosque hover:bg-[#005544] text-white py-4 px-6 rounded-lg font-medium transition-all shadow-lg shadow-mosque/20 flex items-center justify-center gap-2 group">
-                    <span className="material-icons text-xl group-hover:scale-110 transition-transform">calendar_today</span>
-                    {dict.property.scheduleVisit}
+                <div className="flex gap-2">
+                  <button className="w-10 h-10 rounded-full bg-background-light text-nordic hover:bg-primary hover:text-white transition-all flex items-center justify-center">
+                    <span className="material-symbols-rounded text-xl">chat</span>
                   </button>
-                  <button className="w-full bg-transparent border border-nordic/10 hover:border-mosque text-nordic/80 hover:text-mosque py-4 px-6 rounded-lg font-medium transition-all flex items-center justify-center gap-2">
-                    <span className="material-icons text-xl">mail_outline</span>
-                    {dict.property.contactAgent}
+                  <button className="w-10 h-10 rounded-full bg-background-light text-nordic hover:bg-primary hover:text-white transition-all flex items-center justify-center">
+                    <span className="material-symbols-rounded text-xl">call</span>
                   </button>
                 </div>
               </div>
-              
-              <div className="bg-white p-2 rounded-xl shadow-sm border border-mosque/5">
+
+              <div className="space-y-4 pt-4">
+                <button className="w-full bg-primary hover:bg-primary-dark text-white py-5 px-6 rounded-xl font-bold uppercase tracking-widest text-xs transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2.5 group transform active:scale-[0.98]">
+                  <span className="material-symbols-rounded text-xl group-hover:scale-110 transition-transform">calendar_month</span>
+                  {dict.property.scheduleVisit}
+                </button>
+                <button className="w-full bg-white border-2 border-gray-100 hover:border-primary text-nordic hover:text-primary py-5 px-6 rounded-xl font-bold uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-2.5 transform active:scale-[0.98]">
+                  <span className="material-symbols-rounded text-xl">mail</span>
+                  {dict.property.contactAgent}
+                </button>
+              </div>
+            </div>
+            
+            <div className="bg-white p-3 rounded-2xl shadow-soft border border-nordic/5 overflow-hidden">
+              <div className="rounded-xl overflow-hidden h-[300px]">
                 <PropertyMapWrapper location={property.location} lat={property.lat} lng={property.lng} />
               </div>
             </div>
           </div>
           
           {/* Scrollable details under images */}
-          <div className="lg:col-span-8 lg:row-start-2 -mt-4 lg:-mt-8 space-y-8 pb-10">
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-mosque/5">
-              <h2 className="text-lg font-semibold mb-6 text-nordic">{dict.property.propertyFeatures}</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div className="flex flex-col items-center justify-center p-4 bg-mosque/5 rounded-lg border border-mosque/10">
-                  <span className="material-icons text-mosque text-2xl mb-2">square_foot</span>
-                  <span className="text-xl font-bold text-nordic">{property.area}</span>
-                  <span className="text-xs uppercase tracking-wider text-nordic/50">{dict.property.space}</span>
+          <div className="lg:col-span-8 space-y-10 pb-20">
+            <div className="space-y-6">
+              <h2 className="text-[12px] font-bold text-nordic uppercase tracking-[0.2em]">{dict.property.propertyFeatures}</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+                    <span className="material-symbols-rounded text-2xl">straighten</span>
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">{dict.property.space}</p>
+                    <p className="text-base font-bold text-nordic leading-tight">{property.area}</p>
+                  </div>
                 </div>
-                <div className="flex flex-col items-center justify-center p-4 bg-mosque/5 rounded-lg border border-mosque/10">
-                  <span className="material-icons text-mosque text-2xl mb-2">bed</span>
-                  <span className="text-xl font-bold text-nordic">{property.beds}</span>
-                  <span className="text-xs uppercase tracking-wider text-nordic/50">{dict.property.bedrooms}</span>
+                <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+                    <span className="material-symbols-rounded text-2xl">bed</span>
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">{dict.property.bedrooms}</p>
+                    <p className="text-base font-bold text-nordic leading-tight">{property.beds}</p>
+                  </div>
                 </div>
-                <div className="flex flex-col items-center justify-center p-4 bg-mosque/5 rounded-lg border border-mosque/10">
-                  <span className="material-icons text-mosque text-2xl mb-2">shower</span>
-                  <span className="text-xl font-bold text-nordic">{property.baths}</span>
-                  <span className="text-xs uppercase tracking-wider text-nordic/50">{dict.property.bathrooms}</span>
+                <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+                    <span className="material-symbols-rounded text-2xl">shower</span>
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">{dict.property.bathrooms}</p>
+                    <p className="text-base font-bold text-nordic leading-tight">{property.baths}</p>
+                  </div>
                 </div>
-                <div className="flex flex-col items-center justify-center p-4 bg-mosque/5 rounded-lg border border-mosque/10">
-                  <span className="material-icons text-mosque text-2xl mb-2">directions_car</span>
-                  <span className="text-xl font-bold text-nordic">2</span>
-                  <span className="text-xs uppercase tracking-wider text-nordic/50">{dict.property.garage}</span>
+                <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+                    <span className="material-symbols-rounded text-2xl">directions_car</span>
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">{dict.property.garage}</p>
+                    <p className="text-base font-bold text-nordic leading-tight">2</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-sm border border-mosque/5">
-              <h2 className="text-lg font-semibold mb-4 text-nordic">{dict.property.aboutHome}</h2>
-              <div className="prose prose-slate max-w-none text-nordic/70 leading-relaxed whitespace-pre-line">
+            <div className="bg-white p-10 rounded-3xl shadow-soft border border-nordic/5">
+              <h2 className="text-xl font-bold text-nordic uppercase tracking-widest text-[12px] mb-6">{dict.property.aboutHome}</h2>
+              <div className="prose prose-slate max-w-none text-gray-500 leading-relaxed whitespace-pre-line font-medium">
                 {property.description}
               </div>
             </div>
 
             {property.amenities && property.amenities.length > 0 && (
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-mosque/5">
-                <h2 className="text-lg font-semibold mb-6 text-nordic">{dict.property.amenities}</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+              <div className="bg-white p-10 rounded-3xl shadow-soft border border-nordic/5">
+                <h2 className="text-xl font-bold text-nordic uppercase tracking-widest text-[12px] mb-8">{dict.property.amenities}</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12">
                   {property.amenities.map((amenity, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-nordic/70">
-                      <span className="material-icons text-mosque/60 text-sm">check_circle</span>
-                      <span>
+                    <div key={idx} className="flex items-center gap-4 text-gray-500 font-medium">
+                      <div className="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
+                        <span className="material-symbols-rounded text-lg">check_circle</span>
+                      </div>
+                      <span className="text-sm">
                         {(dict.property.amenitiesMap as Record<string, string>)?.[amenity] || amenity}
                       </span>
                     </div>
@@ -234,25 +257,24 @@ export default async function PropertyPage({
             )}
 
             {/* Estimated Payment */}
-            <div className="bg-mosque/5 p-6 rounded-xl border border-mosque/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-white rounded-full text-mosque shadow-sm">
-                  <span className="material-icons">calculate</span>
+            <div className="bg-primary/5 p-8 rounded-3xl border border-primary/10 flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 bg-white rounded-2xl text-primary shadow-soft flex items-center justify-center">
+                  <span className="material-symbols-rounded text-3xl">calculate</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-nordic">{dict.property.estimatedPayment}</h3>
-                  <p className="text-sm text-nordic/60">
+                  <h3 className="text-lg font-bold text-nordic">{dict.property.estimatedPayment}</h3>
+                  <p className="text-sm text-gray-500 font-medium mt-1">
                     {dict.property.startingFrom}{" "}
-                    <strong className="text-mosque">$5,430/mo</strong>{" "}
+                    <strong className="text-primary font-bold text-base">$5,430/mo</strong>{" "}
                     {dict.property.withDownPayment}
                   </p>
                 </div>
               </div>
-              <button className="whitespace-nowrap px-4 py-2 bg-white border border-nordic/10 rounded-lg text-sm font-semibold hover:border-mosque transition-colors text-nordic">
+              <button className="w-full md:w-auto px-8 py-4 bg-white border-2 border-gray-50 rounded-xl text-xs font-bold uppercase tracking-widest hover:border-primary transition-colors text-nordic shadow-soft transform active:scale-95">
                 {dict.property.calculateMortgage}
               </button>
             </div>
-            
           </div>
 
         </div>
