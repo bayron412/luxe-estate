@@ -76,7 +76,7 @@ export default async function Home({
     .order("created_at", { ascending: true });
 
   if (resolvedParams.q) {
-    nonFeaturedQuery = nonFeaturedQuery.ilike('location', `%${resolvedParams.q}%`);
+    nonFeaturedQuery = nonFeaturedQuery.or(`title.ilike.%${resolvedParams.q}%,location.ilike.%${resolvedParams.q}%`);
   }
   if (resolvedParams.type && resolvedParams.type !== 'All') {
     nonFeaturedQuery = nonFeaturedQuery.eq('property_type', resolvedParams.type);
